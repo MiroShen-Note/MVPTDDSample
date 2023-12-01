@@ -24,4 +24,10 @@ class RegisterPresenterTest {
         verify { view.onInputDataError(eq("錯誤"),eq("帳號至少要6碼，第1碼為英文")) }
     }
 
+    @Test
+    fun registerWrongPassword() {
+        presenter.register("A11111111", "2222")
+        verify { view.onInputDataError(eq("錯誤"),eq("密碼至少要8碼，第1碼為英文，並包含1碼數字")) }
+    }
+
 }
