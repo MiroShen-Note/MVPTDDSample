@@ -65,4 +65,25 @@ class RegisterUITest {
 
     }
 
+    @Test
+    fun register_success_should_satrtActivity() {
+
+        //輸入正確的帳號
+        Espresso.onView(ViewMatchers.withId(R.id.loginId))
+            .perform(ViewActions.typeText("A122234525"), ViewActions.closeSoftKeyboard())
+
+        //輸入正確格式的密碼
+        Espresso.onView(ViewMatchers.withId(R.id.password))
+            .perform(ViewActions.typeText("A12345678"), ViewActions.closeSoftKeyboard())
+
+        //點選註冊按鈕
+        Espresso.onView(ViewMatchers.withId(R.id.send))
+            .perform(ViewActions.click())
+
+        //註冊成功，跳轉到登入頁面
+        Espresso.onView(ViewMatchers.withText("註冊成功"))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+    }
+
 }

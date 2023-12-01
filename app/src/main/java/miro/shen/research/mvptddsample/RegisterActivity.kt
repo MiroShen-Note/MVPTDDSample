@@ -19,7 +19,8 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.IRegisterView {
             val loginId = binding.loginId.text.toString()
             val pwd = binding.password.text.toString()
 
-            val registerPresenter = RegisterPresenter(this)
+            val repository:IRegisterRepository = RegisterRepository()
+            val registerPresenter = RegisterPresenter(this, repository)
             registerPresenter
                 .register(loginId, pwd)
         }
@@ -33,5 +34,9 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.IRegisterView {
             .setTitle(title)
 
         builder.show()
+    }
+
+    override fun onRegisterSuccess() {
+        TODO("Not yet implemented")
     }
 }

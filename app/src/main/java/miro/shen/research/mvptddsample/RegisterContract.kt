@@ -3,6 +3,7 @@ package miro.shen.research.mvptddsample
 interface RegisterContract {
     interface IRegisterView {
         fun onInputDataError(title: String, message: String)
+        fun onRegisterSuccess()
 
     }
 
