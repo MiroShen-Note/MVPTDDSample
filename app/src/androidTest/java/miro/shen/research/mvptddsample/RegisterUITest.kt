@@ -43,4 +43,26 @@ class RegisterUITest {
 
     }
 
+    @Test
+    fun wrongPassWordFormat_should_alert() {
+
+        //輸入正確的帳號
+        Espresso.onView(ViewMatchers.withId(R.id.loginId))
+            .perform(ViewActions.typeText("A122234525"), ViewActions.closeSoftKeyboard())
+
+        //輸入錯誤格式的密碼
+        Espresso.onView(ViewMatchers.withId(R.id.password))
+            .perform(ViewActions.typeText("1234"), ViewActions.closeSoftKeyboard())
+
+        //點選註冊按鈕
+        Espresso.onView(ViewMatchers.withId(R.id.send))
+            .perform(ViewActions.click())
+
+        //註冊失敗，Alert
+        Espresso.onView(ViewMatchers.withText("錯誤"))
+            .inRoot(RootMatchers.isDialog())
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+    }
+
 }
