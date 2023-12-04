@@ -3,6 +3,7 @@ package miro.shen.research.mvptddsample
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import miro.shen.research.mvptddsample.api.NetworkService
 import miro.shen.research.mvptddsample.databinding.ActivityRegisterBinding
 
 //import kotlinx.android.synthetic.main.activity_register.send
@@ -19,7 +20,8 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.IRegisterView {
             val loginId = binding.loginId.text.toString()
             val pwd = binding.password.text.toString()
 
-            val repository:IRegisterRepository = RegisterRepository()
+            val networkService = NetworkService()
+            val repository:IRegisterRepository = RegisterRepository(networkService.memberAPI)
             val registerPresenter = RegisterPresenter(this, repository)
             registerPresenter
                 .register(loginId, pwd)
