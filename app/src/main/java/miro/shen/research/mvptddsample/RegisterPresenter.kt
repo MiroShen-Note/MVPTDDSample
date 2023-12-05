@@ -16,6 +16,8 @@ class RegisterPresenter(
                 override fun onRegisterResult(response: RegisterResponse) {
                     if (response.registerResult) {
                         view.onRegisterSuccess()
+                    } else {
+                        view.onRegisterFail()
                     }
                 }
             })

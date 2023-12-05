@@ -4,6 +4,7 @@ interface RegisterContract {
     interface IRegisterView {
         fun onInputDataError(title: String, message: String)
         fun onRegisterSuccess()
+        fun onRegisterFail()
 
     }
 

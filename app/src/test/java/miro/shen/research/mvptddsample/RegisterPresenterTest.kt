@@ -53,4 +53,22 @@ class RegisterPresenterTest {
         verify{ view.onRegisterSuccess() }
     }
 
+    @Test
+    fun registerFail(){
+        val loginId = "A11111111"
+        val password = "A2222222"
+
+        val slot = slot<IRegisterRepository.RegisterCallback>()
+        every { repository.register(eq(loginId), eq(password), capture(slot))}
+            .answers {
+                slot.captured.onRegisterResult(
+                    RegisterResponse(false, null)
+                )
+            }
+
+        presenter.register(loginId, password)
+
+        verify{ view.onRegisterFail() }
+    }
+
 }

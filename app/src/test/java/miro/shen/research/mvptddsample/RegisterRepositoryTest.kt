@@ -1,13 +1,9 @@
 package miro.shen.research.mvptddsample
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import io.mockk.MockKAnnotations
-import io.mockk.every
-import io.mockk.impl.annotations.MockK
-import io.mockk.mockk
-import io.mockk.slot
-import io.mockk.verify
 import miro.shen.research.mvptddsample.api.MemberApi
+import io.mockk.*
+import io.mockk.impl.annotations.MockK
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -34,6 +30,39 @@ class RegisterRepositoryTest {
 
         val registerResponse = RegisterResponse(
             true,
+            null
+        )
+
+        val registerRequest = RegisterRequest(
+            loginid,
+            password
+        )
+
+        val response: Response<RegisterResponse> = Response.success(registerResponse)
+        val mockCall = mockk<Call<RegisterResponse>>(relaxed = true)
+
+        val slot = slot<Callback<RegisterResponse>>()
+
+        every{ api.register(any()).enqueue(capture(slot)) }
+            .answers {
+                slot.captured.onResponse(mockCall, response)
+            }
+
+        val repositoryCallback = mockk<IRegisterRepository.RegisterCallback>(relaxed = true)
+        val repository = RegisterRepository(api)
+        repository.register(loginid, password, repositoryCallback)
+
+        verify{ api.register(eq(registerRequest))}
+        verify { repositoryCallback.onRegisterResult(registerResponse) }
+    }
+
+    @Test
+    fun registerFail(){
+        val loginid = "A11111111"
+        val password = "A2222222"
+
+        val registerResponse = RegisterResponse(
+            false,
             "AnyId"
         )
 
@@ -43,13 +72,13 @@ class RegisterRepositoryTest {
         )
 
         val response: Response<RegisterResponse> = Response.success(registerResponse)
-        val mockkCall = mockk<Call<RegisterResponse>>(relaxed = true)
+        val mockCall = mockk<Call<RegisterResponse>>(relaxed = true)
 
         val slot = slot<Callback<RegisterResponse>>()
 
         every{ api.register(any()).enqueue(capture(slot)) }
             .answers {
-                slot.captured.onResponse(mockkCall, response)
+                slot.captured.onResponse(mockCall, response)
             }
 
         val repositoryCallback = mockk<IRegisterRepository.RegisterCallback>(relaxed = true)

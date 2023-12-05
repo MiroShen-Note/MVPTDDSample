@@ -1,5 +1,6 @@
 package miro.shen.research.mvptddsample
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -39,6 +40,14 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.IRegisterView {
     }
 
     override fun onRegisterSuccess() {
-        TODO("Not yet implemented")
+        val loginId = binding.loginId.text
+        val intent = Intent(this, ResultActivity::class.java)
+        intent.putExtra("ID", loginId)
+
+        startActivity(intent)
+    }
+
+    override fun onRegisterFail() {
+
     }
 }
