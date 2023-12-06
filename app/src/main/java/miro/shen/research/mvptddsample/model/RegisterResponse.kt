@@ -1,4 +1,4 @@
-package miro.shen.research.mvptddsample
+package miro.shen.research.mvptddsample.model
 
 data class RegisterResponse(
     val registerResult: Boolean = false,

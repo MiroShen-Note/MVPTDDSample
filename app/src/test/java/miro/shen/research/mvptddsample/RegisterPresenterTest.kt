@@ -5,6 +5,8 @@ import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.slot
 import io.mockk.verify
+import miro.shen.research.mvptddsample.model.RegisterResponse
+import miro.shen.research.mvptddsample.presenter.RegisterPresenter
 import org.junit.Before
 import org.junit.Test
 

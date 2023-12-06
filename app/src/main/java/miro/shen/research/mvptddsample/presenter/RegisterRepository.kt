@@ -1,7 +1,10 @@
-package miro.shen.research.mvptddsample
+package miro.shen.research.mvptddsample.presenter
 
 import androidx.test.espresso.idling.CountingIdlingResource
+import miro.shen.research.mvptddsample.IRegisterRepository
 import miro.shen.research.mvptddsample.api.MemberApi
+import miro.shen.research.mvptddsample.model.RegisterRequest
+import miro.shen.research.mvptddsample.model.RegisterResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

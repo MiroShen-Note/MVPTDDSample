@@ -1,4 +1,8 @@
-package miro.shen.research.mvptddsample
+package miro.shen.research.mvptddsample.presenter
+
+import miro.shen.research.mvptddsample.IRegisterRepository
+import miro.shen.research.mvptddsample.RegisterContract
+import miro.shen.research.mvptddsample.model.RegisterResponse
 
 class RegisterPresenter(
     val view: RegisterContract.IRegisterView,
@@ -13,8 +17,8 @@ class RegisterPresenter(
             view.onInputDataError("錯誤", "密碼至少要8碼，第1碼為英文，並包含1碼數字")
         } else {
             repository.register(loginId, password, object : IRegisterRepository.RegisterCallback {
-                override fun onRegisterResult(response: RegisterResponse) {
-                    if (response.registerResult) {
+                override fun onRegisterResult(registerResponse: RegisterResponse) {
+                    if (registerResponse.registerResult) {
                         view.onRegisterSuccess()
                     } else {
                         view.onRegisterFail()

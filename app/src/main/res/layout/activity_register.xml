@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:padding="10dp"
         android:orientation="vertical"
-        tools:context=".RegisterActivity">
+        tools:context=".view.RegisterActivity">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

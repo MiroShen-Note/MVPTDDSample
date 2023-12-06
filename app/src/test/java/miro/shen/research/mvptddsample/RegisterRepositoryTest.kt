@@ -4,6 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import miro.shen.research.mvptddsample.api.MemberApi
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
+import miro.shen.research.mvptddsample.model.RegisterRequest
+import miro.shen.research.mvptddsample.model.RegisterResponse
+import miro.shen.research.mvptddsample.presenter.RegisterRepository
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

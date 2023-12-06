@@ -1,5 +1,7 @@
 package miro.shen.research.mvptddsample
 
+import miro.shen.research.mvptddsample.model.RegisterResponse
+
 interface IRegisterRepository {
     abstract fun register(
         loginId: String,

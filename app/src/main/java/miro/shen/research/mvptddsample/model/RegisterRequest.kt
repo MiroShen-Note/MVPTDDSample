@@ -1,4 +1,4 @@
-package miro.shen.research.mvptddsample
+package miro.shen.research.mvptddsample.model
 
 data class RegisterRequest(
     val loginId: String,
