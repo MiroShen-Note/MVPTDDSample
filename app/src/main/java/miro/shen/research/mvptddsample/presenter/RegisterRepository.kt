@@ -9,16 +9,16 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-object Idling{
-    val idlingResource = CountingIdlingResource("API")
-}
+//object Idling{
+//    val idlingResource = CountingIdlingResource("API")
+//}
 class RegisterRepository(val api: MemberApi) : IRegisterRepository {
     override fun register(
         loginId: String,
         passWord: String,
         listener: IRegisterRepository.RegisterCallback
     ) {
-        Idling.idlingResource.increment()
+//        Idling.idlingResource.increment()
 
         val request = RegisterRequest(loginId, passWord)
         api.register(request).enqueue(object: Callback<RegisterResponse>{
@@ -31,7 +31,7 @@ class RegisterRepository(val api: MemberApi) : IRegisterRepository {
                 if(response.isSuccessful){
                     //200
                     listener.onRegisterResult(response.body()!!)
-                    Idling.idlingResource.decrement()
+//                    Idling.idlingResource.decrement()
                 }
             }
 

@@ -10,7 +10,7 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import miro.shen.research.mvptddsample.presenter.Idling
+//import miro.shen.research.mvptddsample.presenter.Idling
 import miro.shen.research.mvptddsample.view.RegisterActivity
 import org.junit.Rule
 import org.junit.Test
@@ -71,7 +71,7 @@ class RegisterUITest {
 
     @Test
     fun register_success_should_satrtActivity() {
-        IdlingRegistry.getInstance().register(Idling.idlingResource)
+//        IdlingRegistry.getInstance().register(Idling.idlingResource)
 
         //輸入正確的帳號
         Espresso.onView(ViewMatchers.withId(R.id.loginId))
@@ -85,11 +85,13 @@ class RegisterUITest {
         Espresso.onView(ViewMatchers.withId(R.id.send))
             .perform(click())
 
+        Thread.sleep(3000)
+
         //註冊成功，導至成功頁。
         Espresso.onView(ViewMatchers.withText("註冊成功"))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
-        IdlingRegistry.getInstance().unregister(Idling.idlingResource)
+//        IdlingRegistry.getInstance().unregister(Idling.idlingResource)
     }
 
     @Test
